@@ -90,9 +90,9 @@ namespace MatrixCalculator
     {
       if (MatrixA.Size != MatrixB.Size)
       throw new ArgumentException("Матрицы должны быть одного размера.");
-      for (int ColumnCounter = 0; ColumnCounter < MatrixA.Size; ColumnCounter++)
+      for (int ColumnCounter = 0; ColumnCounter < MatrixA.Size; ++ColumnCounter)
       {
-        for (int RowCounter = 0; RowCounter < MatrixA.Size; RowCounter++)
+        for (int RowCounter = 0; RowCounter < MatrixA.Size; ++RowCounter)
         {
           if (MatrixA[ColumnCounter, RowCounter] >= MatrixB[ColumnCounter, RowCounter])
           {
@@ -106,9 +106,9 @@ namespace MatrixCalculator
     {
       if (MatrixA.Size != MatrixB.Size)
       throw new ArgumentException("Матрицы должны быть одного размера.");
-      for (int ColumnCounter = 0; ColumnCounter < MatrixA.Size; ColumnCounter++)
+      for (int ColumnCounter = 0; ColumnCounter < MatrixA.Size; ++ColumnCounter)
       {
-        for (int RowCounter = 0; RowCounter < MatrixA.Size; RowCounter++)
+        for (int RowCounter = 0; RowCounter < MatrixA.Size; ++RowCounter)
         {
           if (MatrixA[ColumnCounter, RowCounter] < MatrixB[ColumnCounter, RowCounter])
           {
@@ -122,9 +122,9 @@ namespace MatrixCalculator
     {
       if (MatrixA.Size != MatrixB.Size)
       throw new ArgumentException("Матрицы должны быть одного размера.");
-      for (int ColumnCounter = 0; ColumnCounter < MatrixA.Size; ColumnCounter++)
+      for (int ColumnCounter = 0; ColumnCounter < MatrixA.Size; ++ColumnCounter)
       {
-        for (int RowCounter = 0; RowCounter < MatrixA.Size; RowCounter++)
+        for (int RowCounter = 0; RowCounter < MatrixA.Size; ++RowCounter)
         {
           if (MatrixA[ColumnCounter, RowCounter] > MatrixB[ColumnCounter, RowCounter])
           {
@@ -140,9 +140,9 @@ namespace MatrixCalculator
       return MatrixB is null;
       if (MatrixB is null || MatrixA.Size != MatrixB.Size)
       return false;
-      for (int ColumnCounter = 0; ColumnCounter < MatrixA.Size; ColumnCounter++)
+      for (int ColumnCounter = 0; ColumnCounter < MatrixA.Size; ++ColumnCounter)
       {
-        for (int RowCounter = 0; RowCounter < MatrixA.Size; RowCounter++)
+        for (int RowCounter = 0; RowCounter < MatrixA.Size; ++RowCounter)
         {
           if (MatrixA[ColumnCounter, RowCounter] != MatrixB[ColumnCounter, RowCounter])
           {
@@ -192,9 +192,9 @@ namespace MatrixCalculator
       }
       var result = new Matrix(Size);
       int sign = 1;
-      for (int ColumnCounter = 0; ColumnCounter < Size; ColumnCounter++)
+      for (int ColumnCounter = 0; ColumnCounter < Size; ++ColumnCounter)
       {
-        for (int RowCounter = 0; RowCounter < Size; RowCounter++)
+        for (int RowCounter = 0; RowCounter < Size; ++RowCounter)
         {
           var subMatrix = SubMatrix(ColumnCounter, RowCounter);
           result[RowCounter, ColumnCounter] = sign * subMatrix.Determinant() / determinant;
@@ -207,28 +207,28 @@ namespace MatrixCalculator
     {
       var subMatrix = new Matrix(Size - 1);
       int subRow = 0;
-      for (int row = 0; row < Size; row++)
+      for (int row = 0; row < Size; ++row)
       {
         if (row == RowToRemove)
           continue;
         int subColumn = 0;
-        for (int column = 0; column < Size; column++)
+        for (int column = 0; column < Size; ++column)
         {
           if (column == ColumnToRemove)
             continue;
           subMatrix[subRow, subColumn] = matrix[row, column];
-          subColumn++;
+          ++subColumn;
         }
-        subRow++;
+        ++subRow;
       }
       return subMatrix;
     }
     public override string ToString()
     {
       string result = "";
-      for (int ColumnCounter = 0; ColumnCounter < Size; ColumnCounter++)
+      for (int ColumnCounter = 0; ColumnCounter < Size; ++ColumnCounter)
       {
-        for (int RowCounter = 0; RowCounter < Size; RowCounter++)
+        for (int RowCounter = 0; RowCounter < Size; ++RowCounter)
         {
           result += $"{matrix[ColumnCounter, RowCounter]} ";
         }
@@ -242,9 +242,9 @@ namespace MatrixCalculator
         return 1;
       if (Size != other.Size)
         return Size.CompareTo(other.Size);
-      for (int ColumnCounter = 0; ColumnCounter < Size; ColumnCounter++)
+      for (int ColumnCounter = 0; ColumnCounter < Size; ++ColumnCounter)
       {
-        for (int RowCounter = 0; RowCounter < Size; RowCounter++)
+        for (int RowCounter = 0; RowCounter < Size; ++RowCounter)
         {
           int compare = matrix[ColumnCounter, RowCounter].CompareTo(other.matrix[ColumnCounter, RowCounter]);
           if (compare != 0)
@@ -264,9 +264,9 @@ namespace MatrixCalculator
       unchecked
       {
         int HashCode = 17;
-        for (int ColumnCounter = 0; ColumnCounter < Size; ColumnCounter++)
+        for (int ColumnCounter = 0; ColumnCounter < Size; ++ColumnCounter)
         {
-          for (int RowCounter = 0; RowCounter < Size; RowCounter++)
+          for (int RowCounter = 0; RowCounter < Size; ++RowCounter)
           {
             HashCode = HashCode * 23 + matrix[ColumnCounter, RowCounter].GetHashCode();
           }
@@ -277,9 +277,9 @@ namespace MatrixCalculator
     public Matrix Clone()
     {
       var clone = new Matrix(Size);
-      for (int ColumnCounter = 0; ColumnCounter < Size; ColumnCounter++)
+      for (int ColumnCounter = 0; ColumnCounter < Size; ++ColumnCounter)
       {
-        for (int RowCounter = 0; RowCounter < Size; RowCounter++)
+        for (int RowCounter = 0; RowCounter < Size; ++RowCounter)
         {
           clone[ColumnCounter, RowCounter] = matrix[ColumnCounter, RowCounter];
         }
